@@ -3,11 +3,10 @@ package com.work.home52.demo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 @Data
-@RequiredArgsConstructor
-@AllArgsConstructor
 
 public class Employee {
     private final String firstName;
@@ -15,6 +14,17 @@ public class Employee {
     private double salary;
     private int department;
 
+    public Employee(String firstName, String lastName) {
+        this.firstName = StringUtils.capitalize(firstName);
+        this.lastName = StringUtils.capitalize(lastName);
+    }
+
+    public Employee(String firstName, String lastName, double salary, int department) {
+        this.firstName = StringUtils.capitalize(firstName);
+        this.lastName = StringUtils.capitalize(lastName);
+        this.salary = salary;
+        this.department = department;
+    }
 
     public String getFullName(){
         return firstName + " " + lastName;

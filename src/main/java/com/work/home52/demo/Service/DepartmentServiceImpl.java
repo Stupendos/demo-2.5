@@ -16,7 +16,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     private final ServiceEmployee serviceEmployee;
 
-    public DepartmentServiceImpl(@Qualifier("serviceEmployeeImpl") ServiceEmployee serviceEmployee) {
+    public DepartmentServiceImpl(ServiceEmployee serviceEmployee) {
         this.serviceEmployee = serviceEmployee;
     }
 
