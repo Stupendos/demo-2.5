@@ -1,11 +1,9 @@
 package com.work.home52.demo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Objects;
+
 @Data
 
 public class Employee {
@@ -19,7 +17,7 @@ public class Employee {
         this.lastName = StringUtils.capitalize(lastName);
     }
 
-    public Employee(String firstName, String lastName, double salary, int department) {
+    public Employee(String firstName, String lastName, int department, double salary) {
         this.firstName = StringUtils.capitalize(firstName);
         this.lastName = StringUtils.capitalize(lastName);
         this.salary = salary;
@@ -52,6 +50,16 @@ public class Employee {
 
     public void setDepartment(int department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                ", department=" + department +
+                '}';
     }
 }
 

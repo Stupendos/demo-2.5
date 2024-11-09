@@ -2,9 +2,7 @@ package com.work.home52.demo.Service;
 
 import com.work.home52.demo.Employee;
 import com.work.home52.demo.exceptions.EmployeeNotFoundException;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -44,8 +42,16 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Map<Integer, List<Employee>> getEmployeeByDepartment() {
+    public Map<Integer, List<Employee>> getEmployeeByDepartment(Integer department) {
         return serviceEmployee.findAll().stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment));
+    }
+
+    @Override
+    public Double calculateSalarySumByDepartment(Integer department) {
+        return serviceEmployee.findAll().stream()
+                .filter(employee -> employee.getDepartment() == department)
+                .mapToDouble(Employee::getSalary)
+                .sum();
     }
 }

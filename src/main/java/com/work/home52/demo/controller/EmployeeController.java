@@ -4,11 +4,7 @@ import com.work.home52.demo.Employee;
 import com.work.home52.demo.Service.ServiceEmployee;
 import com.work.home52.demo.exceptions.InvalidInputException;
 import com.work.home52.demo.util.NameValidator;
-import lombok.SneakyThrows;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
-import javax.naming.InvalidNameException;
 import java.util.Collection;
 
 @RestController
@@ -21,31 +17,31 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public Employee addEmployee(@RequestParam String firstName, @RequestParam String lastName) {
+    public Employee addEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int department, double salary) {
         if (!NameValidator.validate(firstName, lastName)) {
             throw new InvalidInputException();
         }
-        return serviceEmployee.add(firstName, lastName);
+        return serviceEmployee.add(firstName, lastName, department, salary);
     }
 
     @GetMapping("/remove")
-    public Employee removeEmployee(@RequestParam String firstName, @RequestParam String lastName) {
+    public Employee removeEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int department, double salary) {
         if (!NameValidator.validate(firstName, lastName)) {
             throw new InvalidInputException();
         }
-        return serviceEmployee.remove(firstName, lastName);
+        return serviceEmployee.remove(firstName, lastName, department, salary);
 
     }
 
     @GetMapping("/find")
-    public Employee findEmployee(@RequestParam String firstName, @RequestParam String lastName) {
+    public Employee findEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int department, double salary) {
         if (!NameValidator.validate(firstName, lastName)) {
             throw new InvalidInputException();
         }
-        return serviceEmployee.find(firstName, lastName);
+        return serviceEmployee.find(firstName, lastName, department, salary);
     }
 
-    @GetMapping("/employee")
+    @GetMapping()
     public Collection<Employee> findAllEmployees() {
         return serviceEmployee.findAll();
     }
